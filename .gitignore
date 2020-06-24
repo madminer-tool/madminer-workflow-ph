@@ -1,0 +1,13 @@
+# Ignore local execution directories
+.workdir
+.yadage
+
+# Ignore debug files that may appear
+MG5_debug
+py.py
+
+# Ignore local software installation (i.e. MadGraph 5)
+software
+
+# Ignore any macOS files
+**/.DS_Store

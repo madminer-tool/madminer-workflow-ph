@@ -1,0 +1,59 @@
+stages:
+
+  - name: configurate
+    dependencies: [init]
+    scheduler:
+      scheduler_type: singlestep-stage
+      parameters:
+        input_file: {step: init, output: input_file}
+        output_dir: '{workdir}/physics'
+      step: {$ref: 'steps.yml#/configurate'}
+
+  - name: generate
+    dependencies: [configurate]
+    scheduler:
+      scheduler_type: singlestep-stage
+      parameters:
+        input_file: {step: init, output: input_file}
+        config_file: {step: configurate, output: config_file}
+        num_jobs: {step: init, output: num_jobs}
+        signal_dir: 'mg_processes/signal'
+        output_dir: '{workdir}/physics'
+      step: {$ref: 'steps.yml#/generate'}
+
+  - name: pythia
+    dependencies: [generate]
+    scheduler:
+      scheduler_type: multistep-stage
+      parameters:
+        events_dir: {step: generate, output: script_files}
+        madgraph_dir: 'software/MG5_aMC_v2_6_7'
+        signal_dir: 'mg_processes/signal'
+        output_dir: '{workdir}/physics'
+      scatter:
+        method: zip
+        parameters: [events_dir]
+      step: {$ref: 'steps.yml#/pythia'}
+
+  - name: delphes
+    dependencies: [pythia]
+    scheduler:
+      scheduler_type: multistep-stage
+      parameters:
+        config_file: {step: configurate, output: config_file}
+        input_file: {step: init, output: input_file}
+        event_file: {stages: pythia, output: output_file, unwrap: true}
+        output_dir: '{workdir}/physics'
+      step: {$ref: 'steps.yml#/delphes'}
+      scatter:
+        method: zip
+        parameters: [event_file]
+
+  - name: combine
+    dependencies: [delphes]
+    scheduler:
+      scheduler_type: singlestep-stage
+      parameters:
+        input_files: {step: delphes, output: output_files}
+        output_dir: '{workdir}/physics'
+      step: {$ref: 'steps.yml#/combine'}
