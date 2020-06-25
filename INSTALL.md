@@ -15,6 +15,7 @@ In terms of software:
 - [MadGraph 5][madgraph-website] installed.
 - [Pythia 8][pythia-website] installed.
 - [Delphes][delphes-website] installed.
+- [Numpy F2PY][numpy-f2py] installed on Python2.
 
 In terms of environment:
 - `ROOTSYS` environment var defined.
@@ -50,7 +51,7 @@ To setup the environment for ROOT, multiple variables need to be defined. These 
 will be useful later on in the process as they will tell _Madgraph 5_ packages where to 
 find _ROOT_ in your local system.
 
-#### 1.1 Mac OS
+#### 2.1 Mac OS
 Modify your Shell source file (`.bashrc` / `.zshrc` / ...) and add:
 
 ```shell script
@@ -60,7 +61,7 @@ export LD_LIBRARY_PATH="$LD_LIBRARY_PATH:$ROOTSYS/lib"
 export DYLD_LIBRARY_PATH="$DYLD_LIBRARY_PATH:$ROOTSYS/lib"
 ```
 
-#### 1.2 Linux
+#### 2.2 Linux
 Modify your Shell source file (`.bashrc` / `.zshrc` / ...) and add:
 
 ```shell script
@@ -86,7 +87,7 @@ curl -sSL "https://launchpad.net/mg5amcnlo/2.0/2.6.x/+download/MG5_aMC_v2.6.7.ta
 
 
 ### 4. Install Pythia and Delphes
-Finally, _Pythia_ and _Delphes_ are installed using MadGraph 5 as some sort of _"package manager"_.
+_Pythia_ and _Delphes_ are installed using MadGraph 5 as some sort of _"package manager"_.
 Bare in mind, however, that they need another package to be installed first: `lhapdf6`.
 
 ```shell script
@@ -96,8 +97,22 @@ echo "install Delphes" | python2 software/MG5_aMC_v2_6_7/bin/mg5_aMC
 ```
 
 
+### 5. Install Numpy on Python2
+Finally, as some of the MadGraph package use _Fortran_ code internally, an additional binary 
+need to be installed. The binary is used to create _Fortran_ to Python interfaces,
+it is called `f2py`, and it is distributed by [Numpy][numpy-website].
+
+Given that MadGraph still uses Python2:
+
+```shell script
+pip2 install numpy
+```
+
+
 [delphes-website]: https://cp3.irmp.ucl.ac.be/projects/delphes
 [madgraph-website]: https://launchpad.net/mg5amcnlo
+[numpy-f2py]: https://numpy.org/doc/1.17/f2py/index.html
+[numpy-website]: https://numpy.org/
 [pythia-website]: http://home.thep.lu.se/Pythia/
 [sip-docs]: https://en.wikipedia.org/wiki/System_Integrity_Protection
 [sip-guide]: https://ss64.com/osx/csrutil.html
