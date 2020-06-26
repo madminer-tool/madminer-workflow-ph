@@ -54,6 +54,6 @@ stages:
     scheduler:
       scheduler_type: singlestep-stage
       parameters:
-        input_files: {step: delphes, output: output_files}
+        input_files: {stages: delphes, output: output_files, unwrap: true}
         output_dir: '{workdir}/physics'
       step: {$ref: 'steps.yml#/combine'}
