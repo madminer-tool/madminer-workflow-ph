@@ -1,5 +1,6 @@
 #!/usr/bin/python
 
+import os
 import sys
 from madminer import combine_and_shuffle
 from pathlib import Path
@@ -9,27 +10,29 @@ from pathlib import Path
 #### Argument parsing ####
 ##########################
 
-h5_list = sys.argv[1]
+input_files = sys.argv[1]
 output_dir = Path(sys.argv[2])
 
-file_path = output_dir.joinpath('data', 'combined_delphes.h5')
+data_dir = str(output_dir.joinpath('data'))
 
 
 ###########################
 ### Cleaning file names ###
 ###########################
 
-h5_list = h5_list.replace('[', '')
-h5_list = h5_list.replace(']', '')
-h5_list = h5_list.split()
-h5_list = [str(file) for file in h5_list]
+file_paths = input_files.split()
 
 
 ##########################
 #### Merging entities ####
 ##########################
 
+os.makedirs(data_dir, exist_ok=True)
+
+output_file = 'combined_delphes.h5'
+output_path = data_dir + '/' + output_file
+
 combine_and_shuffle(
-	input_filenames=h5_list,
-	output_filename=file_path,
+	input_filenames=input_files.split(),
+	output_filename=output_path,
 )

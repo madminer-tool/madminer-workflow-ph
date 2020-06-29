@@ -20,7 +20,7 @@ configurate:
   publisher:
     publisher_type: 'fromglob-pub'
     outputkey: config_file
-    globexpression: 'physics/data/madminer_config.h5'
+    globexpression: 'data/madminer_config.h5'
 
 generate:
   environment: *common_env_physics
@@ -30,7 +30,7 @@ generate:
   publisher:
     publisher_type: 'fromglob-pub'
     outputkey: script_files
-    globexpression: 'physics/folder_*.tar.gz'
+    globexpression: 'folder_*.tar.gz'
 
 pythia:
   environment: *common_env_physics
@@ -40,7 +40,7 @@ pythia:
   publisher:
     publisher_type: 'fromglob-pub'
     outputkey: output_file
-    globexpression: 'physics/events/Events.tar.gz'
+    globexpression: 'events/Events.tar.gz'
 
 delphes:
   environment: *common_env_physics
@@ -50,14 +50,14 @@ delphes:
   publisher:
     publisher_type: 'fromglob-pub'
     outputkey: output_files
-    globexpression: 'physics/data/madminer_delphes_data_*.h5'
+    globexpression: 'data/madminer_delphes_data_*.h5'
 
 combine:
   environment: *common_env_physics
   process:
     process_type: string-interpolated-cmd
-    cmd: scripts/5_combine.sh -p /madminer -i {input_files} -o {output_dir}
+    cmd: scripts/5_combine.sh -p /madminer -i '{input_files}' -o {output_dir}
   publisher:
     publisher_type: 'fromglob-pub'
     outputkey: data_file
-    globexpression: 'physics/data/combined_delphes.h5'
+    globexpression: 'data/combined_delphes.h5'

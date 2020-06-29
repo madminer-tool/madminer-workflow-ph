@@ -9,7 +9,7 @@ set -o nounset
 helpFunction()
 {
     printf "\n"
-    printf "Usage: %s -p project_path -i [input_file_1, input_file_2, ...] -o output_dir\n" "${0}"
+    printf "Usage: %s -p project_path -i 'input_file_1 input_file_2 ...' -o output_dir\n" "${0}"
     printf "\t-p Project top-level path\n"
     printf "\t-i Input files coming from Delphes\n"
     printf "\t-o Workflow output dir\n"
@@ -35,5 +35,4 @@ fi
 
 
 # Perform actions
-echo "${INPUT_FILES}"
 python3 "${PROJECT_PATH}/code/combine.py" "${INPUT_FILES}" "${OUTPUT_DIR}"

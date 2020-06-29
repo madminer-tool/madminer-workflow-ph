@@ -17,7 +17,7 @@ parameters:
     param_card_transform: '16.52*theta'
     parameter_range: (-10.0,10.0)
 
-# The number of benchmark params must match the number of paramaters above
+# The number of benchmark params must match the number of parameters above
 benchmarks:
   - benchmark: 1
     name: 'sm'

@@ -37,5 +37,4 @@ yadage-run: yadage-clean
 		-p input_file="input.yml" \
 		-p num_jobs="6" \
 		-d initdir=$(YADAGE_INPUT_DIR) \
-		--toplevel $(YADAGE_SPEC_DIR) \
-		--visualize
+		--toplevel $(YADAGE_SPEC_DIR)

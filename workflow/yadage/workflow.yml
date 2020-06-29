@@ -6,7 +6,7 @@ stages:
       scheduler_type: singlestep-stage
       parameters:
         input_file: {step: init, output: input_file}
-        output_dir: '{workdir}/physics'
+        output_dir: '{workdir}'
       step: {$ref: 'steps.yml#/configurate'}
 
   - name: generate
@@ -14,11 +14,11 @@ stages:
     scheduler:
       scheduler_type: singlestep-stage
       parameters:
-        input_file: {step: init, output: input_file}
         config_file: {step: configurate, output: config_file}
+        input_file: {step: init, output: input_file}
         num_jobs: {step: init, output: num_jobs}
         signal_dir: 'mg_processes/signal'
-        output_dir: '{workdir}/physics'
+        output_dir: '{workdir}'
       step: {$ref: 'steps.yml#/generate'}
 
   - name: pythia
@@ -29,7 +29,7 @@ stages:
         events_dir: {step: generate, output: script_files}
         madgraph_dir: 'software/MG5_aMC_v2_6_7'
         signal_dir: 'mg_processes/signal'
-        output_dir: '{workdir}/physics'
+        output_dir: '{workdir}'
       scatter:
         method: zip
         parameters: [events_dir]
@@ -43,7 +43,7 @@ stages:
         config_file: {step: configurate, output: config_file}
         input_file: {step: init, output: input_file}
         event_file: {stages: pythia, output: output_file, unwrap: true}
-        output_dir: '{workdir}/physics'
+        output_dir: '{workdir}'
       step: {$ref: 'steps.yml#/delphes'}
       scatter:
         method: zip
@@ -54,6 +54,6 @@ stages:
     scheduler:
       scheduler_type: singlestep-stage
       parameters:
-        input_files: {stages: delphes, output: output_files, unwrap: true}
-        output_dir: '{workdir}/physics'
+        input_files: {stages: delphes, output: output_files, flatten: true}
+        output_dir: '{workdir}'
       step: {$ref: 'steps.yml#/combine'}
