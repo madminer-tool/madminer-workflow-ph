@@ -88,10 +88,9 @@ curl -sSL "https://launchpad.net/mg5amcnlo/2.0/2.6.x/+download/MG5_aMC_v2.6.7.ta
 
 ### 4. Install Pythia and Delphes
 _Pythia_ and _Delphes_ are installed using MadGraph 5 as some sort of _"package manager"_.
-Bare in mind, however, that they need another package to be installed first: `lhapdf6`.
+Bare in mind, however, MadGraph asks for an upgrade the first time you launch it.
 
 ```shell script
-echo "install lhapdf6" | python2 software/MG5_aMC_v2_6_7/bin/mg5_aMC
 echo "install pythia8" | python2 software/MG5_aMC_v2_6_7/bin/mg5_aMC
 echo "install Delphes" | python2 software/MG5_aMC_v2_6_7/bin/mg5_aMC
 ```
