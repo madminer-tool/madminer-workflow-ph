@@ -93,6 +93,7 @@ Bare in mind, however, MadGraph asks for an upgrade the first time you launch it
 ```shell script
 echo "install pythia8" | python2 software/MG5_aMC_v2_6_7/bin/mg5_aMC
 echo "install Delphes" | python2 software/MG5_aMC_v2_6_7/bin/mg5_aMC
+echo "import model EWdim6-full" | python2 software/MG5_aMC_v2_6_7/bin/mg5_aMC
 ```
 
 

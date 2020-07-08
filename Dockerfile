@@ -38,6 +38,7 @@ ENV DYLD_LIBRARY_PATH $DYLD_LIBRARY_PATH:$ROOTSYS/lib
 RUN echo "n" | python2 ${SOFTWARE_FOLDER}/${MG_BINARY}
 RUN echo "install pythia8" | python2 ${SOFTWARE_FOLDER}/${MG_BINARY}
 RUN echo "install Delphes" | python2 ${SOFTWARE_FOLDER}/${MG_BINARY}
+RUN echo "import model EWdim6-full" | python2 ${SOFTWARE_FOLDER}/${MG_BINARY}
 
 # Delphes environment variables
 ENV ROOT_INCLUDE_PATH $ROOT_INCLUDE_PATH:${SOFTWARE_FOLDER}/${MG_FOLDER}/Delphes/external
