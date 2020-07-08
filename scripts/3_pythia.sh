@@ -60,11 +60,11 @@ mkdir -p "${LOGS_ABS_PATH}"
 
 
 # Perform actions
-tar -xvf "${ZIP_FILE}" -m -C "${SIGNAL_ABS_PATH}"
+tar -xf "${ZIP_FILE}" -m -C "${SIGNAL_ABS_PATH}"
 
 sh "${SIGNAL_ABS_PATH}/madminer/scripts/run"*".sh" "${MADGRAPH_ABS_PATH}" "${SIGNAL_ABS_PATH}" "${LOGS_ABS_PATH}"
 
-tar -czvf "${OUTPUT_DIR}/events/Events.tar.gz" \
+tar -czf "${OUTPUT_DIR}/events/Events.tar.gz" \
     -C "${SIGNAL_ABS_PATH}" \
     "Events" \
     "madminer/cards"

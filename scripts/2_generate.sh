@@ -47,7 +47,7 @@ SIGNAL_ABS_PATH="${OUTPUT_DIR}/${SIGNAL_FOLDER}"
 python3 "${PROJECT_PATH}/code/generate.py" "${NUM_JOBS}" "${CONFIG_FILE}" "${OUTPUT_DIR}"
 
 for i in $(seq 0 $((NUM_JOBS-1))); do
-    tar -czvf "${OUTPUT_DIR}/folder_${i}.tar.gz" \
+    tar -czf "${OUTPUT_DIR}/folder_${i}.tar.gz" \
         -C "${SIGNAL_ABS_PATH}" \
         "bin" \
         "Cards" \
