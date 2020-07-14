@@ -84,7 +84,7 @@ scripts/1_configurate.sh \
     -o .workdir
 ```
 
-### B) Workflow
+### B) Coordinated
 The full workflow can be launched using [Yadage][yadage-repo]. Yadage is a YAML specification language
 over a set of utilities that are used to coordinate workflows. Please consider that it can be hard
 to define Yadage workflows as the [Yadage documentation][yadage-docs] is incomplete.

@@ -15,6 +15,7 @@ In terms of software:
 - [MadGraph 5][madgraph-website] installed.
 - [Pythia 8][pythia-website] installed.
 - [Delphes][delphes-website] installed.
+- [A generation model][madgraph-models] installed.
 - [Numpy F2PY][numpy-f2py] installed on Python2.
 
 In terms of environment:
@@ -37,8 +38,12 @@ Since Mac OS El Capitan (2015), all macOS devices have a System Integrity Protec
 ([SIP][sip-docs]) activated by default. It protect users to modify certain parts of
 the OS environment. Follow [this guide][sip-guide] to disable it.
 
-Once it is disabled, the easiest way to download and compile ROOT is to use `brew`.
-The compilation process will take around 45 minutes. Once it has finished, `brew` would 
+Once it is disabled, install ROOT:
+```shell script
+brew install root
+```
+
+The compilation process take around 45 minutes. Once it has finished, `brew` would 
 have installed ROOT at `/usr/local/Cellar/root`.
 
 #### 1.2 Linux
@@ -93,11 +98,20 @@ Bare in mind, however, MadGraph asks for an upgrade the first time you launch it
 ```shell script
 echo "install pythia8" | python2 software/MG5_aMC_v2_6_7/bin/mg5_aMC
 echo "install Delphes" | python2 software/MG5_aMC_v2_6_7/bin/mg5_aMC
+```
+
+
+### 5. Import generation model
+When running MadGraph 5, there are several generative models than could be imported.
+The one specified in both the `proc_card_signal.dat` and `proc_card_background.dat`
+cards is the [_Weak boson effective field theory_][madgraph-model].
+
+```shell script
 echo "import model EWdim6-full" | python2 software/MG5_aMC_v2_6_7/bin/mg5_aMC
 ```
 
 
-### 5. Install Numpy on Python2
+### 6. Install Numpy on Python2
 Finally, as some of the MadGraph package use _Fortran_ code internally, an additional binary 
 need to be installed. The binary is used to create _Fortran_ to Python interfaces,
 it is called `f2py`, and it is distributed by [Numpy][numpy-website].
@@ -111,6 +125,8 @@ pip2 install numpy
 
 [delphes-website]: https://cp3.irmp.ucl.ac.be/projects/delphes
 [madgraph-website]: https://launchpad.net/mg5amcnlo
+[madgraph-model]: https://cp3.irmp.ucl.ac.be/projects/madgraph/wiki/Models/EWdim6
+[madgraph-models]: https://cp3.irmp.ucl.ac.be/projects/madgraph/wiki/Models
 [numpy-f2py]: https://numpy.org/doc/1.17/f2py/index.html
 [numpy-website]: https://numpy.org/
 [pythia-website]: http://home.thep.lu.se/Pythia/
