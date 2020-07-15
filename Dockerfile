@@ -26,7 +26,7 @@ WORKDIR ${SOFTWARE_FOLDER}
 ENV MG_VERSION "MG5_aMC_v2.6.7"
 ENV MG_FOLDER "MG5_aMC_v2_6_7"
 ENV MG_BINARY "MG5_aMC_v2_6_7/bin/mg5_aMC"
-RUN curl -sSL "https://launchpad.net/mg5amcnlo/2.0/2.6.x/+download/${MG_VERSION}.tar.gz" | tar -xzv
+RUN curl -sSL "https://launchpad.net/mg5amcnlo/2.0/2.6.x/+download/${MG_VERSION}.tar.gz" | tar -xz
 
 # ROOT environment variables
 ENV ROOTSYS /usr/local

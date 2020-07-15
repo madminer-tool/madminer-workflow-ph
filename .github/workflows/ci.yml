@@ -1,0 +1,31 @@
+name: Continuous Integration
+
+on:
+  push:
+    branches:
+      - master
+  pull_request:
+    branches:
+      - master
+
+jobs:
+
+  check:
+    needs: []
+    runs-on: ubuntu-latest
+    steps:
+    - name: "Set up GitHub Actions"
+      uses: actions/checkout@v2
+    - name: "Set up Python 3.8"
+      uses: actions/setup-python@v1
+      with:
+        python-version: 3.8
+    - name: "Install Python dependencies"
+      run: pip install packtivity
+    - name: "Check workflow steps syntax"
+      run: |
+        packtivity-validate "workflow/yadage/steps.yml#configurate"
+        packtivity-validate "workflow/yadage/steps.yml#generate"
+        packtivity-validate "workflow/yadage/steps.yml#pythia"
+        packtivity-validate "workflow/yadage/steps.yml#delphes"
+        packtivity-validate "workflow/yadage/steps.yml#combine"
