@@ -15,7 +15,6 @@ stages:
       scheduler_type: singlestep-stage
       parameters:
         config_file: {step: configurate, output: config_file}
-        input_file: {step: init, output: input_file}
         num_jobs: {step: init, output: num_jobs}
         signal_dir: 'mg_processes/signal'
         output_dir: '{workdir}'
