@@ -79,9 +79,9 @@ previous step outputs, so a sequential order must be followed.
 Example:
 ```shell script
 scripts/1_configurate.sh \
-    -p . \
-    -i workflow/input.yml \
-    -o .workdir
+    --project_path . \
+    --input_file workflow/input.yml \
+    --output_dir .workdir
 ```
 
 ### B) Coordinated

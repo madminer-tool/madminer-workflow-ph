@@ -5,34 +5,17 @@ set -o errexit
 set -o nounset
 
 
-# Define help function
-helpFunction()
-{
-    printf "\n"
-    printf "Usage: %s -p project_path -i 'input_file_1 input_file_2 ...' -o output_dir\n" "${0}"
-    printf "\t-p Project top-level path\n"
-    printf "\t-i Input files coming from Delphes\n"
-    printf "\t-o Workflow output dir\n"
-    exit 1
-}
-
 # Argument parsing
-while getopts "p:i:o:" opt
-do
-    case "$opt" in
-        p ) PROJECT_PATH="$OPTARG" ;;
-        i ) INPUT_FILES="$OPTARG" ;;
-        o ) OUTPUT_DIR="$OPTARG" ;;
-        ? ) helpFunction ;;
+while [ "$#" -gt 0 ]; do
+    case $1 in
+        -p|--project_path) project_path="$2";   shift  ;;
+        -i|--input_files)  input_files="$2";    shift  ;;
+        -o|--output_dir)   output_dir="$2";     shift  ;;
+        *) echo "Unknown parameter passed: $1"; exit 1 ;;
     esac
+    shift
 done
-
-if [ -z "${PROJECT_PATH}" ] || [ -z "${INPUT_FILES}" ] || [ -z "${OUTPUT_DIR}" ]
-then
-    echo "Some or all of the parameters are empty";
-    helpFunction
-fi
 
 
 # Perform actions
-python3 "${PROJECT_PATH}/code/combine.py" "${INPUT_FILES}" "${OUTPUT_DIR}"
+python3 "${project_path}/code/combine.py" "${input_files}" "${output_dir}"

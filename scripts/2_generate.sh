@@ -5,49 +5,29 @@ set -o errexit
 set -o nounset
 
 
-# Define help function
-helpFunction()
-{
-    printf "\n"
-    printf "Usage: %s -p project_path -s signal_folder -j num_jobs -c config_file -o output_dir\n" "${0}"
-    printf "\t-p Project top-level path\n"
-    printf "\t-s Signal folder sub-path\n"
-    printf "\t-j Number of jobs\n"
-    printf "\t-c Configuration file path\n"
-    printf "\t-o Workflow output dir\n"
-    exit 1
-}
-
 # Argument parsing
-while getopts "p:s:j:c:o:" opt
-do
-    case "$opt" in
-        p ) PROJECT_PATH="$OPTARG" ;;
-        s ) SIGNAL_FOLDER="$OPTARG" ;;
-        j ) NUM_JOBS="$OPTARG" ;;
-        c ) CONFIG_FILE="$OPTARG" ;;
-        o ) OUTPUT_DIR="$OPTARG" ;;
-        ? ) helpFunction ;;
+while [ "$#" -gt 0 ]; do
+    case $1 in
+        -p|--project_path)  project_path="$2";  shift  ;;
+        -j|--num_jobs)      num_jobs="$2";      shift  ;;
+        -s|--signal_dir)    signal_dir="$2";    shift  ;;
+        -c|--config_file)   config_file="$2";   shift  ;;
+        -o|--output_dir)    output_dir="$2";    shift  ;;
+        *) echo "Unknown parameter passed: $1"; exit 1 ;;
     esac
+    shift
 done
-
-if [ -z "${PROJECT_PATH}" ] || [ -z "${SIGNAL_FOLDER}" ] || [ -z "${NUM_JOBS}" ] || \
-    [ -z "${CONFIG_FILE}" ] || [ -z "${OUTPUT_DIR}" ]
-then
-    echo "Some or all of the parameters are empty";
-    helpFunction
-fi
 
 
 # Define auxiliary variables
-SIGNAL_ABS_PATH="${OUTPUT_DIR}/${SIGNAL_FOLDER}"
+SIGNAL_ABS_PATH="${output_dir}/${signal_dir}"
 
 
 # Perform actions
-python3 "${PROJECT_PATH}/code/generate.py" "${NUM_JOBS}" "${CONFIG_FILE}" "${OUTPUT_DIR}"
+python3 "${project_path}/code/generate.py" "${num_jobs}" "${config_file}" "${output_dir}"
 
-for i in $(seq 0 $((NUM_JOBS-1))); do
-    tar -czf "${OUTPUT_DIR}/folder_${i}.tar.gz" \
+for i in $(seq 0 $((num_jobs-1))); do
+    tar -czf "${output_dir}/folder_${i}.tar.gz" \
         -C "${SIGNAL_ABS_PATH}" \
         "bin" \
         "Cards" \
