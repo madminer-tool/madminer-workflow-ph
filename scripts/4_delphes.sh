@@ -33,7 +33,7 @@ mkdir -p "${LOGS_PATH}"
 
 
 # Perform actions
-tar -xvf "${events_file}" -C "${EXTRACT_PATH}"
+tar -xf "${events_file}" -C "${EXTRACT_PATH}"
 mv "${EXTRACT_PATH}/madminer/cards/benchmark_"*".dat" "${EXTRACT_PATH}/madminer/cards/benchmark.dat"
 
 python3 "${project_path}/code/delphes.py" \
