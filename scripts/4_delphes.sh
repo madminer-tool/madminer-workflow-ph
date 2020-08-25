@@ -10,7 +10,7 @@ while [ "$#" -gt 0 ]; do
     case $1 in
         -p|--project_path)  project_path="$2";  shift  ;;
         -i|--input_file)    input_file="$2";    shift  ;;
-        -s|--events_file)   events_file="$2";   shift  ;;
+        -e|--events_file)   events_file="$2";   shift  ;;
         -c|--config_file)   config_file="$2";   shift  ;;
         -o|--output_dir)    output_dir="$2";    shift  ;;
         *) echo "Unknown parameter passed: $1"; exit 1 ;;
