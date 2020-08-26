@@ -61,6 +61,6 @@ miner.set_morphing(**spec['set_morphing'])
 os.makedirs(data_dir, exist_ok=True)
 
 config_file_name = 'madminer_config.h5'
-config_file_path = data_dir + '/' + config_file_name
+config_file_path = f'{data_dir}/{config_file_name}'
 
 miner.save(config_file_path)

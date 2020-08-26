@@ -60,16 +60,16 @@ for _, _, files in os.walk(event_path):
 #########################
 
 reader.add_sample(
-    lhe_filename=event_path + '/' + 'unweighted_events.lhe.gz',
-    hepmc_filename=event_path + '/' + events_file,
+    lhe_filename=f'{event_path}/unweighted_events.lhe.gz',
+    hepmc_filename=f'{event_path}/{events_file}',
     sampled_from_benchmark=benchmark,
     weights='lhe',
 )
 
 reader.run_delphes(
-    delphes_directory=madg_dir + '/' + 'Delphes',
-    delphes_card=card_dir + '/' + 'delphes_card.dat',
-    log_file=logs_dir + '/' + 'log_delphes.log',
+    delphes_directory=f'{madg_dir}/Delphes',
+    delphes_card=f'{card_dir}/delphes_card.dat',
+    log_file=f'{logs_dir}/log_delphes.log',
 )
 
 
@@ -103,6 +103,6 @@ reader.analyse_delphes_samples()
 os.makedirs(data_dir, exist_ok=True)
 
 data_file_name = f'madminer_delphes_data_{benchmark}.h5'
-data_file_path = data_dir + '/' + data_file_name
+data_file_path = f'{data_dir}/{data_file_name}'
 
 reader.save(data_file_path)
