@@ -42,7 +42,18 @@ mkdir -p "${LOGS_ABS_PATH}"
 # Perform actions
 tar -xf "${zip_file}" -m -C "${SIGNAL_ABS_PATH}"
 
-sh "${SIGNAL_ABS_PATH}/madminer/scripts/run"*".sh" "${MADGRAPH_ABS_PATH}" "${SIGNAL_ABS_PATH}" "${LOGS_ABS_PATH}"
+
+### IMPORTANT NOTE:
+###
+### The execution of the Pythia shell scripts is launched within a subshell (),
+### placed at the working directory before running the code and calling MadGraph.
+###
+### This is necessary as MadGraph automatically creates a Python <-> Fortran
+### translation file called "py.py" which needs to be written on disk.
+(
+    cd "${output_dir}" && \
+    sh "${SIGNAL_ABS_PATH}/madminer/scripts/run"*".sh" "${MADGRAPH_ABS_PATH}" "${SIGNAL_ABS_PATH}" "${LOGS_ABS_PATH}"
+)
 
 tar -czf "${output_dir}/events/Events.tar.gz" \
     -C "${SIGNAL_ABS_PATH}" \

@@ -31,7 +31,6 @@ miner.load(config_file)
 
 benchmarks = [str(i) for i in miner.benchmarks]
 num_benchmarks = len(benchmarks)
-print(f'Benchmarks {benchmarks}')
 
 
 ##########################
@@ -58,19 +57,19 @@ def madminer_run_wrapper(sample_benchmarks, run_type):
         only_prepare_script=True,
         sample_benchmarks=sample_benchmarks,
         mg_directory=madg_dir,
-        mg_process_directory=proc_dir + '/' + run_type,
-        proc_card_file=card_dir + f'/proc_card_{run_type}.dat',
-        param_card_template_file=card_dir + '/param_card_template.dat',
-        run_card_files=[card_dir + f'/run_card_{run_type}.dat'],
-        pythia8_card_file=card_dir + '/pythia8_card.dat',
-        log_directory=logs_dir + '/' + run_type,
+        mg_process_directory=f'{proc_dir}/{run_type}',
+        proc_card_file=f'{card_dir}/proc_card_{run_type}.dat',
+        param_card_template_file=f'{card_dir}/param_card_template.dat',
+        run_card_files=[f'{card_dir}/run_card_{run_type}.dat'],
+        pythia8_card_file=f'{card_dir}/pythia8_card.dat',
+        log_directory=f'{logs_dir}/{run_type}',
         python2_override=True,
     )
 
     # Create files to link benchmark_i to run_i.sh
     for i in range(num_jobs):
         index = i % num_benchmarks
-        file_path = proc_dir + f'/{run_type}/madminer/cards/benchmark_{i}.dat'
+        file_path = f'{proc_dir}/{run_type}/madminer/cards/benchmark_{i}.dat'
 
         with open(file_path, "w+") as f:
             f.write("{}".format(benchmarks[index]))

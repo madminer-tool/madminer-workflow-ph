@@ -23,8 +23,17 @@ done
 SIGNAL_ABS_PATH="${output_dir}/${signal_dir}"
 
 
-# Perform actions
-python3 "${project_path}/code/generate.py" "${num_jobs}" "${config_file}" "${output_dir}"
+### IMPORTANT NOTE:
+###
+### The generation of future executable scripts is launched within a subshell (),
+### placed at the working directory before running the code and calling MadGraph.
+###
+### This is necessary as MadGraph automatically creates a Python <-> Fortran
+### translation file called "py.py" which needs to be written on disk.
+(
+    cd "${output_dir}" && \
+    python3 "${project_path}/code/generate.py" "${num_jobs}" "${config_file}" "${output_dir}"
+)
 
 for i in $(seq 0 $((num_jobs-1))); do
     tar -czf "${output_dir}/folder_${i}.tar.gz" \

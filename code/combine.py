@@ -30,7 +30,7 @@ file_paths = input_files.split()
 os.makedirs(data_dir, exist_ok=True)
 
 output_file = 'combined_delphes.h5'
-output_path = data_dir + '/' + output_file
+output_path = f'{data_dir}/{output_file}'
 
 combine_and_shuffle(
 	input_filenames=input_files.split(),
