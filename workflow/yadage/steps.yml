@@ -16,7 +16,7 @@ configurate:
   environment: *common_env_physics
   process:
     process_type: string-interpolated-cmd
-    cmd: scripts/1_configurate.sh -p /madminer -i {input_file} -o {output_dir}
+    cmd: /madminer/scripts/1_configurate.sh -p /madminer -i {input_file} -o {output_dir}
   publisher:
     publisher_type: 'fromglob-pub'
     outputkey: config_file
@@ -26,7 +26,7 @@ generate:
   environment: *common_env_physics
   process:
     process_type: string-interpolated-cmd
-    cmd: scripts/2_generate.sh -p /madminer -s {signal_dir} -j {num_jobs} -c {config_file} -o {output_dir}
+    cmd: /madminer/scripts/2_generate.sh -p /madminer -s {signal_dir} -j {num_jobs} -c {config_file} -o {output_dir}
   publisher:
     publisher_type: 'fromglob-pub'
     outputkey: script_files
@@ -36,7 +36,7 @@ pythia:
   environment: *common_env_physics
   process:
     process_type: string-interpolated-cmd
-    cmd: scripts/3_pythia.sh -p /madminer -m {madgraph_dir} -s {signal_dir} -z {events_dir} -o {output_dir}
+    cmd: /madminer/scripts/3_pythia.sh -p /madminer -m {madgraph_dir} -s {signal_dir} -z {events_dir} -o {output_dir}
   publisher:
     publisher_type: 'fromglob-pub'
     outputkey: output_file
@@ -46,7 +46,7 @@ delphes:
   environment: *common_env_physics
   process:
     process_type: string-interpolated-cmd
-    cmd: scripts/4_delphes.sh -p /madminer -c {config_file} -i {input_file} -e {event_file} -o {output_dir}
+    cmd: /madminer/scripts/4_delphes.sh -p /madminer -c {config_file} -i {input_file} -e {event_file} -o {output_dir}
   publisher:
     publisher_type: 'fromglob-pub'
     outputkey: output_files
@@ -56,7 +56,7 @@ combine:
   environment: *common_env_physics
   process:
     process_type: string-interpolated-cmd
-    cmd: scripts/5_combine.sh -p /madminer -i '{input_files}' -o {output_dir}
+    cmd: /madminer/scripts/5_combine.sh -p /madminer -i '{input_files}' -o {output_dir}
   publisher:
     publisher_type: 'fromglob-pub'
     outputkey: data_file
