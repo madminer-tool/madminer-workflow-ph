@@ -1,2 +1,2 @@
-madminer==0.7.4
+madminer==0.7.6
 pyyaml==5.3.1
