@@ -112,7 +112,7 @@ echo "import model EWdim6-full" | python2 software/MG5_aMC_v2_6_7/bin/mg5_aMC
 
 
 ### 6. Install Numpy on Python2
-Finally, as some of the MadGraph package use _Fortran_ code internally, an additional binary 
+Finally, as some MadGraph packages use _Fortran_ code internally, an additional binary 
 need to be installed. The binary is used to create _Fortran_ to Python interfaces,
 it is called `f2py`, and it is distributed by [Numpy][numpy-website].
 
@@ -132,5 +132,5 @@ pip2 install numpy
 [pythia-website]: http://home.thep.lu.se/Pythia/
 [sip-docs]: https://en.wikipedia.org/wiki/System_Integrity_Protection
 [sip-guide]: https://ss64.com/osx/csrutil.html
-[root-guide]: https://root.cern.ch/building-root#quick-start
+[root-guide]: https://root.cern/install/build_from_source/#quick-start
 [root-website]: https://root.cern.ch/
