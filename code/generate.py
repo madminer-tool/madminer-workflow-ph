@@ -72,7 +72,7 @@ def madminer_run_wrapper(sample_benchmarks, run_type):
         file_path = f'{proc_dir}/{run_type}/madminer/cards/benchmark_{i}.dat'
 
         with open(file_path, "w+") as f:
-            f.write("{}".format(benchmarks[index]))
+            f.write(benchmarks[index])
 
         print('generate.py', i, benchmarks[index])
 
