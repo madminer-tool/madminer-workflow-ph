@@ -16,7 +16,7 @@ In terms of software:
 - [Pythia 8][pythia-website] installed.
 - [Delphes][delphes-website] installed.
 - [A generation model][madgraph-models] installed.
-- [Numpy F2PY][numpy-f2py] installed on Python2.
+- [Numpy F2PY][numpy-f2py] installed.
 
 In terms of environment:
 - `ROOTSYS` environment var defined.
@@ -34,8 +34,8 @@ _MadGraph 5_, _Pythia 8_ and _Delphes_ is the same in both architectures.
 ### 1. Install ROOT
 
 #### 1.1 Mac OS
-Since Mac OS El Capitan (2015), all macOS devices have a System Integrity Protection
-([SIP][sip-docs]) activated by default. It protect users to modify certain parts of
+Since macOS El Capitan (2015), all macOS devices have a System Integrity Protection
+([SIP][sip-docs]) activated by default. It protects users to modify certain parts of
 the OS environment. Follow [this guide][sip-guide] to disable it.
 
 Once it is disabled, install ROOT:
@@ -52,12 +52,12 @@ on how to download and compile ROOT locally.
 
 
 ### 2. Setup environment
-To setup the environment for ROOT, multiple variables need to be defined. These variables 
+To set up the environment for ROOT, multiple variables need to be defined. These variables 
 will be useful later on in the process as they will tell _Madgraph 5_ packages where to 
 find _ROOT_ in your local system.
 
 #### 2.1 Mac OS
-Modify your Shell source file (`.bashrc` / `.zshrc` / ...) and add:
+Modify your shell source file (`.bashrc` / `.zshrc` / ...) and add:
 
 ```shell script
 export ROOTSYS="/usr/local/Cellar/root"
@@ -67,7 +67,7 @@ export DYLD_LIBRARY_PATH="$DYLD_LIBRARY_PATH:$ROOTSYS/lib"
 ```
 
 #### 2.2 Linux
-Modify your Shell source file (`.bashrc` / `.zshrc` / ...) and add:
+Modify your shell source file (`.bashrc` / `.zshrc` / ...) and add:
 
 ```shell script
 export ROOTSYS=<path_to_root_folder>
@@ -85,19 +85,21 @@ the root folder of this project.
 To download MadGraph 5:
 
 ```shell script
-mkdir software
-cd software
-curl -sSL "https://launchpad.net/mg5amcnlo/2.0/2.6.x/+download/MG5_aMC_v2.6.7.tar.gz" | tar -xzv
+mkdir -p software
+curl -sSL "https://launchpad.net/mg5amcnlo/2.0/2.9.x/+download/MG5_aMC_v2.9.3.tar.gz" | tar -xz -C software
 ```
 
 
 ### 4. Install Pythia and Delphes
 _Pythia_ and _Delphes_ are installed using MadGraph 5 as some sort of _"package manager"_.
-Bare in mind, however, MadGraph asks for an upgrade the first time you launch it.
+Bear in mind, however, MadGraph asks for an upgrade the first time you launch it.
 
 ```shell script
-echo "install pythia8" | python2 software/MG5_aMC_v2_6_7/bin/mg5_aMC
-echo "install Delphes" | python2 software/MG5_aMC_v2_6_7/bin/mg5_aMC
+# For macOS 11.0+ systems
+export SYSTEM_VERSION_COMPAT=1
+
+echo "install pythia8" | python3 software/MG5_aMC_v2_9_3/bin/mg5_aMC
+echo "install Delphes" | python3 software/MG5_aMC_v2_9_3/bin/mg5_aMC
 ```
 
 
@@ -106,28 +108,29 @@ When running MadGraph 5, there are several generative models than could be impor
 The one specified in both the `proc_card_signal.dat` and `proc_card_background.dat`
 cards is the [_Weak boson effective field theory_][madgraph-model].
 
+This model was originally defined in Python2, so it needs to be converted to Python3.
+Thankfully, there is a MadGraph option to automatically convert old models to Python3:
+`auto_convert_model`.
+
 ```shell script
-echo "import model EWdim6-full" | python2 software/MG5_aMC_v2_6_7/bin/mg5_aMC
+echo "set auto_convert_model T" | python3 software/MG5_aMC_v2_9_3/bin/mg5_aMC
+echo "import model EWdim6-full" | python3 software/MG5_aMC_v2_9_3/bin/mg5_aMC
 ```
 
 
-### 6. Install Numpy on Python2
+### 6. Install Numpy
 Finally, as some MadGraph packages use _Fortran_ code internally, an additional binary 
 need to be installed. The binary is used to create _Fortran_ to Python interfaces,
 it is called `f2py`, and it is distributed by [Numpy][numpy-website].
 
-Given that MadGraph still uses Python2:
-
-```shell script
-pip2 install numpy
-```
+Given that MadMiner already installs Numpy, there is nothing to do.
 
 
 [delphes-website]: https://cp3.irmp.ucl.ac.be/projects/delphes
 [madgraph-website]: https://launchpad.net/mg5amcnlo
 [madgraph-model]: https://cp3.irmp.ucl.ac.be/projects/madgraph/wiki/Models/EWdim6
 [madgraph-models]: https://cp3.irmp.ucl.ac.be/projects/madgraph/wiki/Models
-[numpy-f2py]: https://numpy.org/doc/1.17/f2py/index.html
+[numpy-f2py]: https://numpy.org/doc/stable/f2py/index.html
 [numpy-website]: https://numpy.org/
 [pythia-website]: http://home.thep.lu.se/Pythia/
 [sip-docs]: https://en.wikipedia.org/wiki/System_Integrity_Protection
