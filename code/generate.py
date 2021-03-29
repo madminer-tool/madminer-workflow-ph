@@ -63,7 +63,7 @@ def madminer_run_wrapper(sample_benchmarks, run_type):
         run_card_files=[f'{card_dir}/run_card_{run_type}.dat'],
         pythia8_card_file=f'{card_dir}/pythia8_card.dat',
         log_directory=f'{logs_dir}/{run_type}',
-        python2_override=True,
+        python_executable="python3",
     )
 
     # Create files to link benchmark_i to run_i.sh
