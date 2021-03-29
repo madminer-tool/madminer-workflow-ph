@@ -9,9 +9,9 @@ set -o nounset
 while [ "$#" -gt 0 ]; do
     case $1 in
         -p|--project_path)  project_path="$2";  shift  ;;
-        -j|--num_jobs)      num_jobs="$2";      shift  ;;
-        -s|--signal_dir)    signal_dir="$2";    shift  ;;
+        -m|--madgraph_dir)  madgraph_dir="$2";  shift  ;;
         -c|--config_file)   config_file="$2";   shift  ;;
+        -j|--number_jobs)   number_jobs="$2";   shift  ;;
         -o|--output_dir)    output_dir="$2";    shift  ;;
         *) echo "Unknown parameter passed: $1"; exit 1 ;;
     esac
@@ -20,7 +20,8 @@ done
 
 
 # Define auxiliary variables
-SIGNAL_ABS_PATH="${output_dir}/${signal_dir}"
+MADGRAPH_ABS_PATH="${project_path}/${madgraph_dir}"
+SIGNAL_ABS_PATH="${output_dir}/mg_processes/signal"
 
 
 ### IMPORTANT NOTE:
@@ -32,10 +33,10 @@ SIGNAL_ABS_PATH="${output_dir}/${signal_dir}"
 ### translation file called "py.py" which needs to be written on disk.
 (
     cd "${output_dir}" && \
-    python3 "${project_path}/code/generate.py" "${num_jobs}" "${config_file}" "${output_dir}"
+    python3 "${project_path}/code/generate.py" "${config_file}" "${number_jobs}" "${MADGRAPH_ABS_PATH}" "${output_dir}"
 )
 
-for i in $(seq 0 $((num_jobs-1))); do
+for i in $(seq 0 $((number_jobs-1))); do
     tar -czf "${output_dir}/folder_${i}.tar.gz" \
         -C "${SIGNAL_ABS_PATH}" \
         "bin" \

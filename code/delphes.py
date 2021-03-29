@@ -16,15 +16,15 @@ config_file = sys.argv[1]
 event_path = sys.argv[2]
 input_file = sys.argv[3]
 benchmark_file = sys.argv[4]
-output_dir = Path(sys.argv[5])
+madgraph_dir = sys.argv[5]
+output_dir = sys.argv[6]
 
-project_dir = Path(__file__).parent.parent
+project_path = Path(__file__).parent.parent
+output_path = Path(output_dir)
 
-card_dir = str(project_dir.joinpath('code', 'cards'))
-madg_dir = str(project_dir.joinpath('software', 'MG5_aMC_v2_6_7'))
-
-data_dir = str(output_dir.joinpath('data'))
-logs_dir = str(output_dir.joinpath('logs'))
+card_dir = str(project_path.joinpath('code', 'cards'))
+data_dir = str(output_path.joinpath('data'))
+logs_dir = str(output_path.joinpath('logs'))
 
 with open(input_file, 'r') as f:
     spec = yaml.safe_load(f)
@@ -67,7 +67,7 @@ reader.add_sample(
 )
 
 reader.run_delphes(
-    delphes_directory=f'{madg_dir}/Delphes',
+    delphes_directory=f'{madgraph_dir}/Delphes',
     delphes_card=f'{card_dir}/delphes_card.dat',
     log_file=f'{logs_dir}/log_delphes.log',
 )
