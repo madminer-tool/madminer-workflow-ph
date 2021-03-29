@@ -4,15 +4,15 @@ FROM madminertool/docker-madminer:latest
 
 
 #### Install binary dependencies
-RUN apt-get update && apt-get install -y --no-install-recommends \
-    curl \
-    wget \
-    rsync \
-    ca-certificates \
-    gfortran \
-    build-essential \
-    ghostscript \
-    libboost-all-dev
+RUN apt-get update && \
+    apt-get install -y --no-install-recommends \
+        curl \
+        wget \
+        rsync \
+        gfortran \
+        build-essential \
+        ca-certificates \
+        libboost-all-dev
 
 
 #### Define working folders
