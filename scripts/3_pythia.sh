@@ -10,7 +10,6 @@ while [ "$#" -gt 0 ]; do
     case $1 in
         -p|--project_path)  project_path="$2";  shift  ;;
         -m|--madgraph_dir)  madgraph_dir="$2";  shift  ;;
-        -s|--signal_dir)    signal_dir="$2";    shift  ;;
         -z|--zip_file)      zip_file="$2";      shift  ;;
         -o|--output_dir)    output_dir="$2";    shift  ;;
         *) echo "Unknown parameter passed: $1"; exit 1 ;;
@@ -21,7 +20,7 @@ done
 
 # Define auxiliary variables
 MADGRAPH_ABS_PATH="${project_path}/${madgraph_dir}"
-SIGNAL_ABS_PATH="${output_dir}/${signal_dir}"
+SIGNAL_ABS_PATH="${output_dir}/mg_processes/signal"
 LOGS_ABS_PATH="${output_dir}/logs"
 
 

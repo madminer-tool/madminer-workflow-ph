@@ -9,17 +9,17 @@ from pathlib import Path
 #### Argument parsing ####
 ##########################
 
-num_jobs = int(sys.argv[1])
-config_file = str(sys.argv[2])
-output_dir = Path(sys.argv[3])
+config_file = str(sys.argv[1])
+number_jobs = int(sys.argv[2])
+madgraph_dir = str(sys.argv[3])
+output_dir = str(sys.argv[4])
 
-project_dir = Path(__file__).parent.parent
+project_path = Path(__file__).parent.parent
+output_path = Path(output_dir)
 
-card_dir = str(project_dir.joinpath('code', 'cards'))
-madg_dir = str(project_dir.joinpath('software', 'MG5_aMC_v2_6_7'))
-
-logs_dir = str(output_dir.joinpath('logs'))
-proc_dir = str(output_dir.joinpath('mg_processes'))
+card_dir = str(project_path.joinpath('code', 'cards'))
+logs_dir = str(output_path.joinpath('logs'))
+proc_dir = str(output_path.joinpath('mg_processes'))
 
 
 ##########################
@@ -56,7 +56,7 @@ def madminer_run_wrapper(sample_benchmarks, run_type):
         is_background=is_background,
         only_prepare_script=True,
         sample_benchmarks=sample_benchmarks,
-        mg_directory=madg_dir,
+        mg_directory=madgraph_dir,
         mg_process_directory=f'{proc_dir}/{run_type}',
         proc_card_file=f'{card_dir}/proc_card_{run_type}.dat',
         param_card_template_file=f'{card_dir}/param_card_template.dat',
@@ -67,7 +67,7 @@ def madminer_run_wrapper(sample_benchmarks, run_type):
     )
 
     # Create files to link benchmark_i to run_i.sh
-    for i in range(num_jobs):
+    for i in range(number_jobs):
         index = i % num_benchmarks
         file_path = f'{proc_dir}/{run_type}/madminer/cards/benchmark_{i}.dat'
 
@@ -82,8 +82,8 @@ def madminer_run_wrapper(sample_benchmarks, run_type):
 ###########################
 
 # Sample benchmarks from already stablished benchmarks in a democratic way
-initial_list = benchmarks[0 : (num_jobs % num_benchmarks)]
-others_list = benchmarks * (num_jobs // num_benchmarks)
+initial_list = benchmarks[0 : (number_jobs % num_benchmarks)]
+others_list = benchmarks * (number_jobs // num_benchmarks)
 sample_list = initial_list + others_list
 
 madminer_run_wrapper(sample_benchmarks=sample_list, run_type='signal')
@@ -94,5 +94,5 @@ madminer_run_wrapper(sample_benchmarks=sample_list, run_type='signal')
 ###########################
 
 # Currently not used
-# sample_list = ['sm' for i in range(num_jobs)]
+# sample_list = ['sm' for i in range(number_jobs)]
 # madminer_run_wrapper(sample_benchmarks=sample_list, run_type='background')
