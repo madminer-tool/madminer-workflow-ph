@@ -1,3 +1,6 @@
 # Includes necessary "f2py" Numpy binary
 madminer==0.7.6
 pyyaml==5.4
+
+# Necessary for Python3 MadGraph versions
+six==1.15.0
