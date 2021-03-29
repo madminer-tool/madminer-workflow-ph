@@ -1,2 +1,3 @@
+# Includes necessary "f2py" Numpy binary
 madminer==0.7.6
 pyyaml==5.4
