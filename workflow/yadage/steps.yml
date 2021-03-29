@@ -5,7 +5,7 @@
 common_env_physics: &common_env_physics
     environment_type: 'docker-encapsulated'
     image: 'madminertool/madminer-workflow-ph'
-    imagetag: '0.2.0'
+    imagetag: '0.3.0'
 
 
 ########################################
