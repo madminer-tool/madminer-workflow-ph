@@ -23,10 +23,10 @@ ENV SOFTWARE_FOLDER "/madminer/software"
 #### Install MadGraph 5
 WORKDIR ${SOFTWARE_FOLDER}
 
-ENV MG_VERSION "MG5_aMC_v2.6.7"
-ENV MG_FOLDER "MG5_aMC_v2_6_7"
-ENV MG_BINARY "MG5_aMC_v2_6_7/bin/mg5_aMC"
-RUN curl -sSL "https://launchpad.net/mg5amcnlo/2.0/2.6.x/+download/${MG_VERSION}.tar.gz" | tar -xz
+ENV MG_VERSION "MG5_aMC_v2.9.3"
+ENV MG_FOLDER "MG5_aMC_v2_9_3"
+ENV MG_BINARY "MG5_aMC_v2_9_3/bin/mg5_aMC"
+RUN curl -sSL "https://launchpad.net/mg5amcnlo/2.0/2.9.x/+download/${MG_VERSION}.tar.gz" | tar -xz
 
 # ROOT environment variables
 ENV ROOTSYS /usr/local
@@ -35,10 +35,10 @@ ENV LD_LIBRARY_PATH $LD_LIBRARY_PATH:$ROOTSYS/lib
 ENV DYLD_LIBRARY_PATH $DYLD_LIBRARY_PATH:$ROOTSYS/lib
 
 # Skip the auto-update on the first execution
-RUN echo "n" | python2 ${SOFTWARE_FOLDER}/${MG_BINARY}
-RUN echo "install pythia8" | python2 ${SOFTWARE_FOLDER}/${MG_BINARY}
-RUN echo "install Delphes" | python2 ${SOFTWARE_FOLDER}/${MG_BINARY}
-RUN echo "import model EWdim6-full" | python2 ${SOFTWARE_FOLDER}/${MG_BINARY}
+RUN echo "n" | python3 ${SOFTWARE_FOLDER}/${MG_BINARY}
+RUN echo "install pythia8" | python3 ${SOFTWARE_FOLDER}/${MG_BINARY}
+RUN echo "install Delphes" | python3 ${SOFTWARE_FOLDER}/${MG_BINARY}
+RUN echo "import model EWdim6-full" | python3 ${SOFTWARE_FOLDER}/${MG_BINARY}
 
 # Delphes environment variables
 ENV ROOT_INCLUDE_PATH $ROOT_INCLUDE_PATH:${SOFTWARE_FOLDER}/${MG_FOLDER}/Delphes/external
