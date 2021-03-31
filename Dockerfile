@@ -50,6 +50,9 @@ ENV DYLD_LIBRARY_PATH $DYLD_LIBRARY_PATH:$ROOTSYS/lib
 RUN echo "n" | python3 ${SOFTWARE_FOLDER}/${MG_BINARY}
 RUN echo "install pythia8" | python3 ${SOFTWARE_FOLDER}/${MG_BINARY}
 RUN echo "install Delphes" | python3 ${SOFTWARE_FOLDER}/${MG_BINARY}
+
+# Turn ON Python2 -> Python3 models conversion
+RUN echo "set auto_convert_model T" | python3 ${SOFTWARE_FOLDER}/${MG_BINARY}
 RUN echo "import model EWdim6-full" | python3 ${SOFTWARE_FOLDER}/${MG_BINARY}
 
 # Delphes environment variables
