@@ -35,9 +35,17 @@ rm -rf "${LOGS_ABS_PATH}"
 mkdir -p "${output_dir}/events"
 mkdir -p "${SIGNAL_ABS_PATH}/Events"
 mkdir -p "${SIGNAL_ABS_PATH}/madminer"
-mkdir -p "${SIGNAL_ABS_PATH}/rw_me"
 mkdir -p "${LOGS_ABS_PATH}"
 
+### IMPORTANT NOTE:
+###
+### New versions of Pythia8 checks for the existence of the 'rw_me' folder
+### before using it to store any reweighed related file inside.
+###
+### When the folder exists, the reweighing subprocess stops, producing an error
+### due to the missing files that would otherwise have been stored.
+###
+### mkdir -p "${SIGNAL_ABS_PATH}/rw_me"
 
 # Perform actions
 tar -xf "${zip_file}" -m -C "${SIGNAL_ABS_PATH}"
