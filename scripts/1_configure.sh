@@ -18,4 +18,4 @@ done
 
 
 # Perform actions
-python3 "${project_path}/code/configurate.py" "${input_file}" "${output_dir}"
+python3 "${project_path}/code/configure.py" "${input_file}" "${output_dir}"

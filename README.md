@@ -78,7 +78,7 @@ previous step outputs, so a sequential order must be followed.
 
 Example:
 ```shell script
-scripts/1_configurate.sh \
+scripts/1_configure.sh \
     --project_path . \
     --input_file workflow/input.yml \
     --output_dir .workdir
