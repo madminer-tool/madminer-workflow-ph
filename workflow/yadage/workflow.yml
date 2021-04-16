@@ -1,20 +1,20 @@
 stages:
 
-  - name: configurate
+  - name: configure
     dependencies: [init]
     scheduler:
       scheduler_type: singlestep-stage
       parameters:
         input_file: {step: init, output: input_file}
         output_dir: '{workdir}'
-      step: {$ref: 'steps.yml#/configurate'}
+      step: {$ref: 'steps.yml#/configure'}
 
   - name: generate
-    dependencies: [configurate]
+    dependencies: [configure]
     scheduler:
       scheduler_type: singlestep-stage
       parameters:
-        config_file: {step: configurate, output: config_file}
+        config_file: {step: configure, output: config_file}
         number_jobs: {step: init, output: num_generation_jobs}
         mg5amc_dir: 'software/MG5_aMC_v2_9_3'
         output_dir: '{workdir}'
@@ -38,9 +38,9 @@ stages:
     scheduler:
       scheduler_type: multistep-stage
       parameters:
-        config_file: {step: configurate, output: config_file}
-        input_file: {step: init, output: input_file}
+        config_file: {step: configure, output: config_file}
         event_file: {stages: pythia, output: output_file, unwrap: true}
+        input_file: {step: init, output: input_file}
         mg5amc_dir: 'software/MG5_aMC_v2_9_3'
         output_dir: '{workdir}'
       step: {$ref: 'steps.yml#/delphes'}

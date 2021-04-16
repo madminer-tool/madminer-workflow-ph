@@ -38,7 +38,7 @@ jobs:
         pip install packtivity
     - name: "Check workflow steps syntax"
       run: |
-        packtivity-validate "workflow/yadage/steps.yml#configurate"
+        packtivity-validate "workflow/yadage/steps.yml#configure"
         packtivity-validate "workflow/yadage/steps.yml#generate"
         packtivity-validate "workflow/yadage/steps.yml#pythia"
         packtivity-validate "workflow/yadage/steps.yml#delphes"

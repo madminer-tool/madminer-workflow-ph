@@ -12,11 +12,11 @@ common_env_physics: &common_env_physics
 ############ WORKFLOW STEPS ############
 ########################################
 
-configurate:
+configure:
   environment: *common_env_physics
   process:
     process_type: string-interpolated-cmd
-    cmd: /madminer/scripts/1_configurate.sh -p /madminer -i {input_file} -o {output_dir}
+    cmd: /madminer/scripts/1_configure.sh -p /madminer -i {input_file} -o {output_dir}
   publisher:
     publisher_type: 'fromglob-pub'
     outputkey: config_file
