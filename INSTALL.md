@@ -105,8 +105,8 @@ echo "install Delphes" | python3 software/MG5_aMC_v2_9_3/bin/mg5_aMC
 
 ### 5. Import generation model
 When running MadGraph 5, there are several generative models than could be imported.
-The one specified in both the `proc_card_signal.dat` and `proc_card_background.dat`
-cards is the [_Weak boson effective field theory_][madgraph-model].
+The one specified in both the _signal_ and _background_ process cards is called
+[_Weak boson effective field theory_][madgraph-model].
 
 This model was originally defined in Python2, so it needs to be converted to Python3.
 Thankfully, there is a MadGraph option to automatically convert old models to Python3:
