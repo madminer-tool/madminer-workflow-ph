@@ -13,7 +13,7 @@ from pathlib import Path
 input_files = sys.argv[1]
 output_dir = Path(sys.argv[2])
 
-data_dir = str(output_dir.joinpath('data'))
+data_dir = str(output_dir.joinpath("data"))
 
 
 ###########################
@@ -29,10 +29,10 @@ file_paths = input_files.split()
 
 os.makedirs(data_dir, exist_ok=True)
 
-output_file = 'combined_delphes.h5'
-output_path = f'{data_dir}/{output_file}'
+output_file = "combined_delphes.h5"
+output_path = f"{data_dir}/{output_file}"
 
 combine_and_shuffle(
-	input_filenames=input_files.split(),
-	output_filename=output_path,
+    input_filenames=input_files.split(),
+    output_filename=output_path,
 )
