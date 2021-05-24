@@ -60,6 +60,14 @@ need to be installed.
 Follow the [installation guide][install-guide] to have your local environment ready.
 
 
+### Formatting
+All Python files are formatted using [Black][black-web]:
+
+```shell
+make check
+```
+
+
 ## Execution
 When executing the workflow (either fully or some of its parts) it is important to consider that
 each individual step received inputs and generates outputs. Outputs are usually files, which need
@@ -77,7 +85,7 @@ Individual steps can be launched using their shell script. Be aware their execut
 previous step outputs, so a sequential order must be followed.
 
 Example:
-```shell script
+```shell
 scripts/1_configure.sh \
     --project_path . \
     --input_file workflow/input.yml \
@@ -94,7 +102,7 @@ Yadage depends on having the Docker image used as environment already available 
 Docker image for this workflow, jump to the [Docker section](#docker).
 
 Once the Docker image has been pushed:
-```shell script
+```shell
 pip3 install yadage
 make yadage-run
 ```
@@ -102,19 +110,20 @@ make yadage-run
 
 ## Docker
 To build a new Docker image:
-```shell script
+```shell
 make build
 ```
 
 To push a new Docker image, bump up the `VERSION` number and execute:
 
-```shell script
+```shell
 export DOCKERUSER=<your_dockerhub_username>
 export DOCKERPASS=<your_dockerhub_password>
 make push
 ```
 
 
+[black-web]: https://black.readthedocs.io/en/stable/
 [install-guide]: INSTALL.md
 [madminer-docs]: https://madminer.readthedocs.io/en/latest/index.html
 [madminer-repo]: https://github.com/diana-hep/madminer
