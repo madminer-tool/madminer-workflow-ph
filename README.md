@@ -124,7 +124,7 @@ make push
 
 
 [black-web]: https://black.readthedocs.io/en/stable/
-[install-guide]: INSTALL.md
+[install-guide]: docs/INSTALL.md
 [madminer-docs]: https://madminer.readthedocs.io/en/latest/index.html
 [madminer-repo]: https://github.com/diana-hep/madminer
 [madminer-workflow-ml]: https://github.com/scailfin/madminer-workflow-ml

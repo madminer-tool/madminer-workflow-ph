@@ -39,7 +39,7 @@ Since macOS El Capitan (2015), all macOS devices have a System Integrity Protect
 the OS environment. Follow [this guide][sip-guide] to disable it.
 
 Once it is disabled, install ROOT:
-```shell script
+```shell
 brew install root
 ```
 
@@ -59,7 +59,7 @@ find _ROOT_ in your local system.
 #### 2.1 Mac OS
 Modify your shell source file (`.bashrc` / `.zshrc` / ...) and add:
 
-```shell script
+```shell
 export ROOTSYS="/usr/local/Cellar/root"
 export PATH="$ROOTSYS/bin:$PATH"
 export LD_LIBRARY_PATH="$LD_LIBRARY_PATH:$ROOTSYS/lib"
@@ -69,7 +69,7 @@ export DYLD_LIBRARY_PATH="$DYLD_LIBRARY_PATH:$ROOTSYS/lib"
 #### 2.2 Linux
 Modify your shell source file (`.bashrc` / `.zshrc` / ...) and add:
 
-```shell script
+```shell
 export ROOTSYS=<path_to_root_folder>
 export PATH="$ROOTSYS/bin:$PATH"
 export LD_LIBRARY_PATH="$LD_LIBRARY_PATH:$ROOTSYS/lib"
@@ -84,7 +84,7 @@ the root folder of this project.
 
 To download MadGraph 5:
 
-```shell script
+```shell
 mkdir -p software
 curl -sSL "https://launchpad.net/mg5amcnlo/2.0/2.9.x/+download/MG5_aMC_v2.9.3.tar.gz" | tar -xz -C software
 ```
@@ -94,7 +94,7 @@ curl -sSL "https://launchpad.net/mg5amcnlo/2.0/2.9.x/+download/MG5_aMC_v2.9.3.ta
 _Pythia_ and _Delphes_ are installed using MadGraph 5 as some sort of _"package manager"_.
 Bear in mind, however, MadGraph asks for an upgrade the first time you launch it.
 
-```shell script
+```shell
 # For macOS 11.0+ systems
 export SYSTEM_VERSION_COMPAT=1
 
@@ -112,7 +112,7 @@ This model was originally defined in Python2, so it needs to be converted to Pyt
 Thankfully, there is a MadGraph option to automatically convert old models to Python3:
 `auto_convert_model`.
 
-```shell script
+```shell
 echo "set auto_convert_model T" | python3 software/MG5_aMC_v2_9_3/bin/mg5_aMC
 echo "import model EWdim6-full" | python3 software/MG5_aMC_v2_9_3/bin/mg5_aMC
 ```
