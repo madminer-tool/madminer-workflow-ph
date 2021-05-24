@@ -1,10 +1,16 @@
-DOCKER_NAME = madminer-workflow-ph
-DOCKER_REGISTRY = madminertool
+DOCKER_NAME = "madminer-workflow-ph"
+DOCKER_REGISTRY = "madminertool"
 DOCKER_VERSION = $(shell cat VERSION)
 
 YADAGE_INPUT_DIR = "$(PWD)/workflow"
 YADAGE_SPEC_DIR = "$(PWD)/workflow/yadage"
 YADAGE_WORK_DIR = "$(PWD)/.yadage"
+
+
+.PHONY: check
+check:
+	@echo "Checking code format"
+	@black --check "code"
 
 
 .PHONY: build
