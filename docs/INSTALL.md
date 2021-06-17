@@ -132,7 +132,7 @@ Given that MadMiner already installs Numpy, there is nothing to do.
 [madgraph-models]: https://cp3.irmp.ucl.ac.be/projects/madgraph/wiki/Models
 [numpy-f2py]: https://numpy.org/doc/stable/f2py/index.html
 [numpy-website]: https://numpy.org/
-[pythia-website]: http://home.thep.lu.se/Pythia/
+[pythia-website]: https://pythia.org/
 [sip-docs]: https://en.wikipedia.org/wiki/System_Integrity_Protection
 [sip-guide]: https://ss64.com/osx/csrutil.html
 [root-guide]: https://root.cern/install/build_from_source/#quick-start
