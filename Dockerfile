@@ -31,9 +31,9 @@ RUN python3 -m pip install --no-cache-dir --upgrade pip && \
 
 
 #### Install MadGraph 5
-ENV MG_VERSION "MG5_aMC_v2.9.3"
-ENV MG_FOLDER "MG5_aMC_v2_9_3"
-ENV MG_BINARY "MG5_aMC_v2_9_3/bin/mg5_aMC"
+ENV MG_VERSION "MG5_aMC_v2.9.4"
+ENV MG_FOLDER "MG5_aMC_v2_9_4"
+ENV MG_BINARY "MG5_aMC_v2_9_4/bin/mg5_aMC"
 
 RUN mkdir -p ${SOFTWARE_FOLDER} && true \
     | curl -sSL "https://launchpad.net/mg5amcnlo/2.0/2.9.x/+download/${MG_VERSION}.tar.gz" \

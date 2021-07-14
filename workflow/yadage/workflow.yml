@@ -16,7 +16,7 @@ stages:
       parameters:
         config_file: {step: configure, output: config_file}
         number_jobs: {step: init, output: num_generation_jobs}
-        mg5amc_dir: 'software/MG5_aMC_v2_9_3'
+        mg5amc_dir: 'software/MG5_aMC_v2_9_4'
         output_dir: '{workdir}'
       step: {$ref: 'steps.yml#/generate'}
 
@@ -26,7 +26,7 @@ stages:
       scheduler_type: multistep-stage
       parameters:
         events_dir: {step: generate, output: script_files}
-        mg5amc_dir: 'software/MG5_aMC_v2_9_3'
+        mg5amc_dir: 'software/MG5_aMC_v2_9_4'
         output_dir: '{workdir}'
       scatter:
         method: zip
@@ -41,7 +41,7 @@ stages:
         config_file: {step: configure, output: config_file}
         event_file: {stages: pythia, output: output_file, unwrap: true}
         input_file: {step: init, output: input_file}
-        mg5amc_dir: 'software/MG5_aMC_v2_9_3'
+        mg5amc_dir: 'software/MG5_aMC_v2_9_4'
         output_dir: '{workdir}'
       step: {$ref: 'steps.yml#/delphes'}
       scatter:

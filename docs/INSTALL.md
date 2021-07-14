@@ -86,7 +86,7 @@ To download MadGraph 5:
 
 ```shell
 mkdir -p software
-curl -sSL "https://launchpad.net/mg5amcnlo/2.0/2.9.x/+download/MG5_aMC_v2.9.3.tar.gz" | tar -xz -C software
+curl -sSL "https://launchpad.net/mg5amcnlo/2.0/2.9.x/+download/MG5_aMC_v2.9.4.tar.gz" | tar -xz -C software
 ```
 
 
@@ -98,8 +98,8 @@ Bear in mind, however, MadGraph asks for an upgrade the first time you launch it
 # For macOS 11.0+ systems
 export SYSTEM_VERSION_COMPAT=1
 
-echo "install pythia8" | python3 software/MG5_aMC_v2_9_3/bin/mg5_aMC
-echo "install Delphes" | python3 software/MG5_aMC_v2_9_3/bin/mg5_aMC
+echo "install pythia8" | python3 software/MG5_aMC_v2_9_4/bin/mg5_aMC
+echo "install Delphes" | python3 software/MG5_aMC_v2_9_4/bin/mg5_aMC
 ```
 
 
@@ -113,8 +113,8 @@ Thankfully, there is a MadGraph option to automatically convert old models to Py
 `auto_convert_model`.
 
 ```shell
-echo "set auto_convert_model T" | python3 software/MG5_aMC_v2_9_3/bin/mg5_aMC
-echo "import model EWdim6-full" | python3 software/MG5_aMC_v2_9_3/bin/mg5_aMC
+echo "set auto_convert_model T" | python3 software/MG5_aMC_v2_9_4/bin/mg5_aMC
+echo "import model EWdim6-full" | python3 software/MG5_aMC_v2_9_4/bin/mg5_aMC
 ```
 
 
