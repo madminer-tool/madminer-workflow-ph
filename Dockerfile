@@ -39,8 +39,7 @@ RUN mkdir -p ${SOFTWARE_FOLDER} && true \
     | curl -sSL "https://launchpad.net/mg5amcnlo/2.0/2.9.x/+download/${MG_VERSION}.tar.gz" \
     | tar -xz -C ${SOFTWARE_FOLDER}
 
-# ROOT environment variables
-ENV ROOTSYS /usr/local
+# ROOTSYS related environment variables
 ENV PATH $PATH:$ROOTSYS/bin
 ENV LD_LIBRARY_PATH $LD_LIBRARY_PATH:$ROOTSYS/lib
 ENV DYLD_LIBRARY_PATH $DYLD_LIBRARY_PATH:$ROOTSYS/lib
