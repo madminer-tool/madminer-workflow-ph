@@ -21,8 +21,8 @@ In terms of software:
 In terms of environment:
 - `ROOTSYS` environment var defined.
 - `PATH` environment var updated with ROOT binaries path.
-- `LD_LIBRARY_PATH` environment var defined.
-- `DYLD_LIBRARY_PATH` environment var defined.
+- `LD_LIBRARY_PATH` environment var defined (Linux).
+- `DYLD_LIBRARY_PATH` environment var defined (Mac OS).
 
 
 ## Installation
@@ -62,7 +62,6 @@ Modify your shell source file (`.bashrc` / `.zshrc` / ...) and add:
 ```shell
 export ROOTSYS="/usr/local/Cellar/root"
 export PATH="$ROOTSYS/bin:$PATH"
-export LD_LIBRARY_PATH="$LD_LIBRARY_PATH:$ROOTSYS/lib"
 export DYLD_LIBRARY_PATH="$DYLD_LIBRARY_PATH:$ROOTSYS/lib"
 ```
 
@@ -73,7 +72,6 @@ Modify your shell source file (`.bashrc` / `.zshrc` / ...) and add:
 export ROOTSYS=<path_to_root_folder>
 export PATH="$ROOTSYS/bin:$PATH"
 export LD_LIBRARY_PATH="$LD_LIBRARY_PATH:$ROOTSYS/lib"
-export DYLD_LIBRARY_PATH="$DYLD_LIBRARY_PATH:$ROOTSYS/lib"
 ```
 
 
