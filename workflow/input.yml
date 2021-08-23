@@ -52,7 +52,7 @@ observables:
     default: 0.0
 
   - name: 'delta_phi_jj'
-    definition: '(j[0].phi() - j[1].phi()) * (-1. + 2.*float(j[0].eta > j[1].eta))'
+    definition: '(j[0].phi - j[1].phi) * (-1. + 2.*float(j[0].eta > j[1].eta))'
     required: True
     default: null
 
