@@ -50,6 +50,7 @@ for i in $(seq 0 $((num_benchmarks-1))); do
         "lib" \
         "madminer/scripts/run_${i}.sh" \
         "madminer/cards/benchmark_${i}.dat" \
+        "madminer/cards/me5_configuration_${i}.txt" \
         "madminer/cards/mg_commands_${i}.dat" \
         "madminer/cards/param_card_${i}.dat" \
         "madminer/cards/pythia8_card_${i}.dat" \

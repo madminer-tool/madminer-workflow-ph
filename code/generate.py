@@ -53,16 +53,17 @@ def madminer_run_wrapper(sample_benchmarks, run_type):
         raise ValueError("Invalid run type")
 
     miner.run_multiple(
+        mg_directory=madgraph_dir,
+        proc_card_file=f"{card_dir}/proc_card_{run_type}.dat",
+        run_card_files=[f"{card_dir}/run_card_{run_type}.dat"],
+        param_card_template_file=f"{card_dir}/param_card_template.dat",
+        mg_process_directory=f"{proc_dir}/{run_type}",
+        pythia8_card_file=f"{card_dir}/pythia8_card.dat",
+        configuration_file=f"{card_dir}/me5_configuration.txt",
+        log_directory=f"{logs_dir}/{run_type}",
+        sample_benchmarks=sample_benchmarks,
         is_background=is_background,
         only_prepare_script=True,
-        sample_benchmarks=sample_benchmarks,
-        mg_directory=madgraph_dir,
-        mg_process_directory=f"{proc_dir}/{run_type}",
-        proc_card_file=f"{card_dir}/proc_card_{run_type}.dat",
-        param_card_template_file=f"{card_dir}/param_card_template.dat",
-        run_card_files=[f"{card_dir}/run_card_{run_type}.dat"],
-        pythia8_card_file=f"{card_dir}/pythia8_card.dat",
-        log_directory=f"{logs_dir}/{run_type}",
         python_executable="python3",
     )
 
