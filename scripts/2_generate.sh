@@ -36,7 +36,12 @@ SIGNAL_ABS_PATH="${output_dir}/mg_processes/signal"
     python3 "${project_path}/code/generate.py" "${config_file}" "${number_jobs}" "${MADGRAPH_ABS_PATH}" "${output_dir}"
 )
 
-for i in $(seq 0 $((number_jobs-1))); do
+
+# Count the number of benchmarks
+run_cards_path="${SIGNAL_ABS_PATH}/madminer/scripts"
+num_benchmarks=$(find "${run_cards_path}" -maxdepth 1 -name "run_*.sh" | wc -l)
+
+for i in $(seq 0 $((num_benchmarks-1))); do
     tar -czf "${output_dir}/folder_${i}.tar.gz" \
         -C "${SIGNAL_ABS_PATH}" \
         "bin" \
