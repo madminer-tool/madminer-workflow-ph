@@ -30,7 +30,6 @@ miner = MadMiner()
 miner.load(config_file)
 
 benchmarks = [str(i) for i in miner.benchmarks]
-num_benchmarks = len(benchmarks)
 
 
 ##########################
@@ -68,26 +67,23 @@ def madminer_run_wrapper(sample_benchmarks, run_type):
     )
 
     # Create files to link benchmark_i to run_i.sh
-    for i in range(number_jobs):
-        index = i % num_benchmarks
+    for i, benchmark in enumerate(benchmarks):
         file_path = f"{proc_dir}/{run_type}/madminer/cards/benchmark_{i}.dat"
 
         with open(file_path, "w+") as f:
-            f.write(benchmarks[index])
+            f.write(benchmark)
 
-        print("generate.py", i, benchmarks[index])
+        print("Benchmark:", i, benchmark)
 
 
 ###########################
 ##### Run with signal #####
 ###########################
 
-# Sample benchmarks from already stablished benchmarks in a democratic way
-initial_list = benchmarks[0 : (number_jobs % num_benchmarks)]
-others_list = benchmarks * (number_jobs // num_benchmarks)
-sample_list = initial_list + others_list
-
-madminer_run_wrapper(sample_benchmarks=sample_list, run_type="signal")
+madminer_run_wrapper(
+    sample_benchmarks=benchmarks,
+    run_type="signal",
+)
 
 
 ###########################
@@ -95,5 +91,7 @@ madminer_run_wrapper(sample_benchmarks=sample_list, run_type="signal")
 ###########################
 
 # Currently not used
-# sample_list = ['sm' for i in range(number_jobs)]
-# madminer_run_wrapper(sample_benchmarks=sample_list, run_type='background')
+# madminer_run_wrapper(
+#     sample_benchmarks=["sm"] * len(benchmarks),
+#     run_type="background",
+# )
