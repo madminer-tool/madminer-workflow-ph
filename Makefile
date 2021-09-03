@@ -37,6 +37,6 @@ yadage-run: yadage-clean
 	@echo "Launching Yadage..."
 	@yadage-run $(YADAGE_WORK_DIR) "workflow.yml" \
 		-p input_file="input.yml" \
-		-p num_generation_jobs="6" \
+		-p num_procs_per_job="1" \
 		-d initdir=$(YADAGE_INPUT_DIR) \
 		--toplevel $(YADAGE_SPEC_DIR)

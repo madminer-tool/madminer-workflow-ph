@@ -10,9 +10,8 @@ from pathlib import Path
 ##########################
 
 config_file = str(sys.argv[1])
-number_jobs = int(sys.argv[2])
-madgraph_dir = str(sys.argv[3])
-output_dir = str(sys.argv[4])
+madgraph_dir = str(sys.argv[2])
+output_dir = str(sys.argv[3])
 
 project_path = Path(__file__).parent.parent
 output_path = Path(output_dir)

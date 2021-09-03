@@ -26,7 +26,7 @@ generate:
   environment: *common_env_physics
   process:
     process_type: string-interpolated-cmd
-    cmd: /madminer/scripts/2_generate.sh -p /madminer -m {mg5amc_dir} -c {config_file} -j {number_jobs} -o {output_dir}
+    cmd: /madminer/scripts/2_generate.sh -p /madminer -m {mg5amc_dir} -c {config_file} -j {number_procs} -o {output_dir}
   publisher:
     publisher_type: 'fromglob-pub'
     outputkey: script_files

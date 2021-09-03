@@ -11,7 +11,7 @@ while [ "$#" -gt 0 ]; do
         -p|--project_path)  project_path="$2";  shift  ;;
         -m|--madgraph_dir)  madgraph_dir="$2";  shift  ;;
         -c|--config_file)   config_file="$2";   shift  ;;
-        -j|--number_jobs)   number_jobs="$2";   shift  ;;
+        -j|--number_procs)  number_procs="$2";  shift  ;;
         -o|--output_dir)    output_dir="$2";    shift  ;;
         *) echo "Unknown parameter passed: $1"; exit 1 ;;
     esac
@@ -33,7 +33,7 @@ SIGNAL_ABS_PATH="${output_dir}/mg_processes/signal"
 ### translation file called "py.py" which needs to be written on disk.
 (
     cd "${output_dir}" && \
-    python3 "${project_path}/code/generate.py" "${config_file}" "${number_jobs}" "${MADGRAPH_ABS_PATH}" "${output_dir}"
+    python3 "${project_path}/code/generate.py" "${config_file}" "${MADGRAPH_ABS_PATH}" "${output_dir}"
 )
 
 

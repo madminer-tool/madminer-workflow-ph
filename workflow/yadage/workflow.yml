@@ -15,7 +15,7 @@ stages:
       scheduler_type: singlestep-stage
       parameters:
         config_file: {step: configure, output: config_file}
-        number_jobs: {step: init, output: num_generation_jobs}
+        number_procs: {step: init, output: num_procs_per_job}
         mg5amc_dir: 'software/MG5_aMC_v2_9_4'
         output_dir: '{workdir}'
       step: {$ref: 'steps.yml#/generate'}
