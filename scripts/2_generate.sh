@@ -37,11 +37,23 @@ SIGNAL_ABS_PATH="${output_dir}/mg_processes/signal"
 )
 
 
+# Parametrize number of parallel processes per job
+default_spec="nb_core = None"
+custom_spec="nb_core = ${number_procs}"
+
+
 # Count the number of benchmarks
 run_cards_path="${SIGNAL_ABS_PATH}/madminer/scripts"
 num_benchmarks=$(find "${run_cards_path}" -maxdepth 1 -name "run_*.sh" | wc -l)
 
 for i in $(seq 0 $((num_benchmarks-1))); do
+
+    # Inject the number of processes in the configuration
+    sed -i \
+        -e "s/${default_spec}/${custom_spec}/" \
+        "${SIGNAL_ABS_PATH}/madminer/cards/me5_configuration_${i}.txt"
+
+    # Create the zip files
     tar -czf "${output_dir}/folder_${i}.tar.gz" \
         -C "${SIGNAL_ABS_PATH}" \
         "bin" \
