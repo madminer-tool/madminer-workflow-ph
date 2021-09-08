@@ -1,5 +1,10 @@
 # Madminer workflow PH
 
+[![CI/CD Status][ci-status-badge]][ci-status-link]
+[![Docker pulls][docker-pulls-badge]][docker-pulls-link]
+[![MIT license][mit-license-badge]][mit-license-link]
+[![Code style][code-style-badge]][code-style-link]
+
 
 ## About
 This repository defines a Physics workflow using the [Madminer package][madminer-repo]
@@ -122,6 +127,15 @@ export DOCKERPASS=<your_dockerhub_password>
 make push
 ```
 
+
+[ci-status-badge]: https://github.com/scailfin/madminer-workflow-ph/actions/workflows/ci.yml/badge.svg?branch=master
+[ci-status-link]: https://github.com/scailfin/madminer-workflow-ph/actions/workflows/ci.yml?query=branch%3Amaster
+[code-style-badge]: https://img.shields.io/badge/code%20style-black-000000.svg
+[code-style-link]: https://github.com/psf/black
+[docker-pulls-badge]: https://img.shields.io/docker/pulls/madminertool/madminer-workflow-ph.svg
+[docker-pulls-link]: https://hub.docker.com/r/madminertool/madminer-workflow-ph
+[mit-license-badge]: https://img.shields.io/badge/License-MIT-blue.svg
+[mit-license-link]: https://github.com/scailfin/madminer-workflow-ph/blob/master/LICENSE
 
 [black-web]: https://black.readthedocs.io/en/stable/
 [install-guide]: docs/INSTALL.md
