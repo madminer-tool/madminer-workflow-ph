@@ -34,7 +34,8 @@ RUN python3 -m pip install --no-cache-dir --upgrade pip && \
 #### MadGraph 5 environment variables
 ENV MG_VERSION "MG5_aMC_v2.9.4"
 ENV MG_FOLDER "MG5_aMC_v2_9_4"
-ENV MG_BINARY "MG5_aMC_v2_9_4/bin/mg5_aMC"
+ENV MG_FOLDER_PATH "${SOFTWARE_FOLDER}/${MG_FOLDER}"
+ENV MG_BINARY_PATH "${SOFTWARE_FOLDER}/${MG_FOLDER}/bin/mg5_aMC"
 
 #### CERN ROOT environment variables
 ENV PATH $PATH:$ROOTSYS/bin
@@ -48,16 +49,16 @@ RUN mkdir -p ${SOFTWARE_FOLDER} && true \
 
 
 #### Install Pythia8 and Delphes
-RUN echo "n" | python3 ${SOFTWARE_FOLDER}/${MG_BINARY}
-RUN echo "install pythia8" | python3 ${SOFTWARE_FOLDER}/${MG_BINARY}
-RUN echo "install Delphes" | python3 ${SOFTWARE_FOLDER}/${MG_BINARY}
+RUN echo "n" | python3 ${MG_BINARY_PATH}
+RUN echo "install pythia8" | python3 ${MG_BINARY_PATH}
+RUN echo "install Delphes" | python3 ${MG_BINARY_PATH}
 
 # Turn ON Python2 -> Python3 models conversion
-RUN echo "set auto_convert_model T" | python3 ${SOFTWARE_FOLDER}/${MG_BINARY}
-RUN echo "import model EWdim6-full" | python3 ${SOFTWARE_FOLDER}/${MG_BINARY}
+RUN echo "set auto_convert_model T" | python3 ${MG_BINARY_PATH}
+RUN echo "import model EWdim6-full" | python3 ${MG_BINARY_PATH}
 
 # Delphes environment variables
-ENV ROOT_INCLUDE_PATH $ROOT_INCLUDE_PATH:${SOFTWARE_FOLDER}/${MG_FOLDER}/Delphes/external
+ENV ROOT_INCLUDE_PATH "${ROOT_INCLUDE_PATH}:${MG_FOLDER_PATH}/Delphes/external"
 
 
 #### Set working directory
