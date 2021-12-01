@@ -53,7 +53,9 @@ for i in $(seq 0 $((num_benchmarks-1))); do
         -e "s/${default_spec}/${custom_spec}/" \
         "${SIGNAL_ABS_PATH}/madminer/cards/me5_configuration_${i}.txt"
 
-    # Create the zip files
+    # Create the zip files 
+    # Kubernetes at CERN sandwich with set +o errexit
+    set +o errexit
     tar -czf "${output_dir}/folder_${i}.tar.gz" \
         -C "${SIGNAL_ABS_PATH}" \
         "bin" \
@@ -71,4 +73,5 @@ for i in $(seq 0 $((num_benchmarks-1))); do
         "Source" \
         "SubProcesses" \
         "madevent.tar.gz"
+    set -o errexit
 done

@@ -35,7 +35,10 @@ mkdir -p "${LOGS_ABS_PATH}"
 
 
 # Perform actions
+# Kubernetes at CERN sandwich with set +o errexit
+set +o errexit
 tar -xf "${events_file}" -C "${EXTRACT_ABS_PATH}"
+set -o errexit
 mv "${EXTRACT_ABS_PATH}/madminer/cards/benchmark_"*".dat" "${EXTRACT_ABS_PATH}/madminer/cards/benchmark.dat"
 
 python3 "${project_path}/code/delphes.py" \
