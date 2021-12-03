@@ -47,8 +47,10 @@ mkdir -p "${LOGS_ABS_PATH}"
 ### mkdir -p "${SIGNAL_ABS_PATH}/rw_me"
 
 # Perform actions
+# Kubernetes at CERN sandwich with set +o errexit
+set +o errexit
 tar -xf "${zip_file}" -m -C "${SIGNAL_ABS_PATH}"
-
+set -o errexit
 
 ### IMPORTANT NOTE:
 ###
@@ -62,7 +64,10 @@ tar -xf "${zip_file}" -m -C "${SIGNAL_ABS_PATH}"
     sh "${SIGNAL_ABS_PATH}/madminer/scripts/run"*".sh" "${MADGRAPH_ABS_PATH}" "${SIGNAL_ABS_PATH}" "${LOGS_ABS_PATH}"
 )
 
+# Kubernetes at CERN sandwich with set +o errexit
+set +o errexit
 tar -czf "${output_dir}/events/Events.tar.gz" \
     -C "${SIGNAL_ABS_PATH}" \
     "Events" \
     "madminer/cards"
+set -o errexit
