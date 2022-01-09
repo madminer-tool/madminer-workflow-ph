@@ -39,39 +39,39 @@ SIGNAL_ABS_PATH="${output_dir}/mg_processes/signal"
 
 # Parametrize number of parallel processes per job
 default_spec="nb_core = None"
-custom_spec="nb_core = ${number_procs}"
-
+custom_spec="nb_core = None"
 
 # Count the number of benchmarks
 run_cards_path="${SIGNAL_ABS_PATH}/madminer/scripts"
 num_benchmarks=$(find "${run_cards_path}" -maxdepth 1 -name "run_*.sh" | wc -l)
 
 for i in $(seq 0 $((num_benchmarks-1))); do
-
-    # Inject the number of processes in the configuration
-    sed -i \
-        -e "s/${default_spec}/${custom_spec}/" \
-        "${SIGNAL_ABS_PATH}/madminer/cards/me5_configuration_${i}.txt"
-
-    # Create the zip files 
-    # Kubernetes at CERN sandwich with set +o errexit
-    set +o errexit
-    tar -czf "${output_dir}/folder_${i}.tar.gz" \
-        -C "${SIGNAL_ABS_PATH}" \
-        "bin" \
-        "Cards" \
-        "HTML" \
-        "lib" \
-        "madminer/scripts/run_${i}.sh" \
-        "madminer/cards/benchmark_${i}.dat" \
-        "madminer/cards/me5_configuration_${i}.txt" \
-        "madminer/cards/mg_commands_${i}.dat" \
-        "madminer/cards/param_card_${i}.dat" \
-        "madminer/cards/pythia8_card_${i}.dat" \
-        "madminer/cards/reweight_card_${i}.dat" \
-        "madminer/cards/run_card_${i}.dat" \
-        "Source" \
-        "SubProcesses" \
-        "madevent.tar.gz"
-    set -o errexit
+        # Inject the number of processes in the configuration
+        sed -i \
+            -e "s/${default_spec}/${custom_spec}/" \
+            "${SIGNAL_ABS_PATH}/madminer/cards/me5_configuration_${i}.txt"
+            
+    for j in $(seq 0 $((number_procs-1))); do
+        # Create the zip files 
+        # Kubernetes at CERN sandwich with set +o errexit
+        set +o errexit
+        tar -czf "${output_dir}/folder_${i}_${j}.tar.gz" \
+            -C "${SIGNAL_ABS_PATH}" \
+            "bin" \
+            "Cards" \
+            "HTML" \
+            "lib" \
+            "madminer/scripts/run_${i}.sh" \
+            "madminer/cards/benchmark_${i}.dat" \
+            "madminer/cards/me5_configuration_${i}.txt" \
+            "madminer/cards/mg_commands_${i}.dat" \
+            "madminer/cards/param_card_${i}.dat" \
+            "madminer/cards/pythia8_card_${i}.dat" \
+            "madminer/cards/reweight_card_${i}.dat" \
+            "madminer/cards/run_card_${i}.dat" \
+            "Source" \
+            "SubProcesses" \
+            "madevent.tar.gz"
+        set -o errexit
+    done
 done
