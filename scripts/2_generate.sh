@@ -38,8 +38,8 @@ SIGNAL_ABS_PATH="${output_dir}/mg_processes/signal"
 
 
 # Parametrize number of parallel processes per job
-default_spec="nb_core = None"
-custom_spec="nb_core = None"
+#default_spec="nb_core = None"
+#custom_spec="nb_core = None"
 
 # Count the number of benchmarks
 run_cards_path="${SIGNAL_ABS_PATH}/madminer/scripts"
