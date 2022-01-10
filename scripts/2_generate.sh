@@ -50,7 +50,7 @@ for i in $(seq 0 $((num_benchmarks-1))); do
         # Create the zip files 
         # Kubernetes at CERN sandwich with set +o errexit
         set +o errexit
-        tar -czf "${output_dir}/folder_${i}_${j}.tar.gz" \
+        tar -cjf "${output_dir}/folder_${i}_${j}.tar.gz" \
             -C "${SIGNAL_ABS_PATH}" \
             "bin" \
             "Cards" \

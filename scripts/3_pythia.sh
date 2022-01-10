@@ -66,7 +66,7 @@ set -o errexit
 
 # Kubernetes at CERN sandwich with set +o errexit
 set +o errexit
-tar -czf "${output_dir}/events/Events.tar.gz" \
+tar -cjf "${output_dir}/events/Events.tar.gz" \
     -C "${SIGNAL_ABS_PATH}" \
     "Events" \
     "madminer/cards"
