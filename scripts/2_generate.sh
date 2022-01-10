@@ -46,11 +46,6 @@ run_cards_path="${SIGNAL_ABS_PATH}/madminer/scripts"
 num_benchmarks=$(find "${run_cards_path}" -maxdepth 1 -name "run_*.sh" | wc -l)
 
 for i in $(seq 0 $((num_benchmarks-1))); do
-        # Inject the number of processes in the configuration
-        sed -i \
-            -e "s/${default_spec}/${custom_spec}/" \
-            "${SIGNAL_ABS_PATH}/madminer/cards/me5_configuration_${i}.txt"
-            
     for j in $(seq 0 $((number_procs-1))); do
         # Create the zip files 
         # Kubernetes at CERN sandwich with set +o errexit
