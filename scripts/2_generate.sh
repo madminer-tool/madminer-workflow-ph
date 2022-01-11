@@ -45,17 +45,18 @@ SIGNAL_ABS_PATH="${output_dir}/mg_processes/signal"
 run_cards_path="${SIGNAL_ABS_PATH}/madminer/scripts"
 num_benchmarks=$(find "${run_cards_path}" -maxdepth 1 -name "run_*.sh" | wc -l)
 
+
 for i in $(seq 0 $((num_benchmarks-1))); do
     for j in $(seq 0 $((number_procs-1))); do
         # Create the zip files 
         # Kubernetes at CERN sandwich with set +o errexit
         set +o errexit
-        tar -cjf "${output_dir}/folder_${i}_${j}.tar.gz" \
-            -C "${SIGNAL_ABS_PATH}" \
-            "bin" \
-            "Cards" \
-            "HTML" \
-            "lib" \
+        cd "${SIGNAL_ABS_PATH}" && \
+        zip -r "${output_dir}/folder_${i}_${j}.zip" \
+            "bin/" \
+            "Cards/" \
+            "HTML/" \
+            "lib/" \
             "madminer/scripts/run_${i}.sh" \
             "madminer/cards/benchmark_${i}.dat" \
             "madminer/cards/me5_configuration_${i}.txt" \
@@ -64,8 +65,8 @@ for i in $(seq 0 $((num_benchmarks-1))); do
             "madminer/cards/pythia8_card_${i}.dat" \
             "madminer/cards/reweight_card_${i}.dat" \
             "madminer/cards/run_card_${i}.dat" \
-            "Source" \
-            "SubProcesses" \
+            "Source/" \
+            "SubProcesses/" \
             "madevent.tar.gz"
         set -o errexit
     done

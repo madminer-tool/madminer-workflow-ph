@@ -13,7 +13,9 @@ RUN apt-get update && \
         build-essential \
         ca-certificates \
         libboost-all-dev \
-        python3-pip
+        python3-pip \
+        zip \
+        unzip
 
 
 #### Define working folders
