@@ -23,8 +23,6 @@ MADGRAPH_ABS_PATH="${project_path}/${madgraph_dir}"
 SIGNAL_ABS_PATH="${output_dir}/mg_processes/signal"
 LOGS_ABS_PATH="${output_dir}/logs"
 
-echo "Hello0"
-
 # Cleanup previous files (useful when run locally)
 rm -rf "${output_dir}/events"
 rm -rf "${SIGNAL_ABS_PATH}/Events"
@@ -36,8 +34,6 @@ mkdir -p "${output_dir}/events"
 mkdir -p "${SIGNAL_ABS_PATH}/Events"
 mkdir -p "${SIGNAL_ABS_PATH}/madminer"
 mkdir -p "${LOGS_ABS_PATH}"
-
-echo "Hello1"
 
 ### IMPORTANT NOTE:
 ###
@@ -51,12 +47,10 @@ echo "Hello1"
 
 # Perform actions
 # Kubernetes at CERN sandwich with set +o errexit
-
-echo "Hello2"
 set +o errexit
 unzip "${zip_file}" -d "${SIGNAL_ABS_PATH}"
 set -o errexit
-echo "Hello3"
+
 
 ### IMPORTANT NOTE:
 ###
@@ -67,11 +61,10 @@ echo "Hello3"
 ### translation file called "py.py" which needs to be written on disk.
 (
     cd "${output_dir}" && \
-    echo "Hello4" && \
     sh "${SIGNAL_ABS_PATH}/madminer/scripts/run"*".sh" "${MADGRAPH_ABS_PATH}" "${SIGNAL_ABS_PATH}" "${LOGS_ABS_PATH}"
 )
 
-echo "Hello5"
+
 # Kubernetes at CERN sandwich with set +o errexit
 set +o errexit
 cd "${SIGNAL_ABS_PATH}" && \
@@ -79,5 +72,3 @@ zip -r "${output_dir}/events/Events.zip" \
        "Events/" \
        "madminer/cards/"
 set -o errexit
-
-echo "Hello6"
