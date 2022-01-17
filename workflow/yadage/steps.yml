@@ -5,7 +5,7 @@
 common_env_physics: &common_env_physics
     environment_type: 'docker-encapsulated'
     image: 'madminertool/madminer-workflow-ph'
-    imagetag: '0.5.3beta1'
+    imagetag: '0.5.3beta16'
 
 
 ########################################
@@ -30,7 +30,7 @@ generate:
   publisher:
     publisher_type: 'fromglob-pub'
     outputkey: script_files
-    globexpression: 'folder_*.tar.gz'
+    globexpression: 'folder_*.zip'
 
 pythia:
   environment: *common_env_physics
@@ -40,7 +40,7 @@ pythia:
   publisher:
     publisher_type: 'fromglob-pub'
     outputkey: output_file
-    globexpression: 'events/Events.tar.gz'
+    globexpression: 'events/Events.zip'
 
 delphes:
   environment: *common_env_physics

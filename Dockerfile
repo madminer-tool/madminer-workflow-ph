@@ -49,17 +49,9 @@ RUN mkdir -p ${SOFTWARE_FOLDER} && true \
     | curl -sSL "https://launchpad.net/mg5amcnlo/2.0/2.9.x/+download/${MG_VERSION}.tar.gz" \
     | tar -xz -C ${SOFTWARE_FOLDER}
 
-
 #### Install Pythia8
-ENV PYTHIA_VERSION "8244"
 RUN echo "n" | python3 ${MG_BINARY_PATH}
-RUN cd ${SOFTWARE_FOLDER} &&\
-    wget --quiet "https://pythia.org/download/pythia${PYTHIA_VERSION:0:2}/pythia${PYTHIA_VERSION}.tgz" && \
-    echo "install pythia8 --pythia8_tarball=${SOFTWARE_FOLDER}/pythia${PYTHIA_VERSION}.tgz" | python3 ${MG_BINARY_PATH} &&\
-    rm -rf ${SOFTWARE_FOLDER}/pythia${PYTHIA_VERSION}.tgz
-
-#The command below installs by default latest Pythia8
-#RUN echo "install pythia8" | python3 ${MG_BINARY_PATH}
+RUN echo "install pythia8"| python3 ${MG_BINARY_PATH}
 
 #### Install Delphes
 RUN echo "install Delphes" | python3 ${MG_BINARY_PATH}
