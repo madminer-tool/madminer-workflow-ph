@@ -28,34 +28,20 @@ to test individual steps before testing the full workflow coordination.
 
 Considering the workflow steps:
 
-                        +--------------+
-                        |  Configurate |
-                        +--------------+
-                                |
-                                |
-                                v
-                        +--------------+
-                        |   Generate   |
-                        +--------------+
-                                |
-            +-------------------+-------------------+
-            |                   |                   |
-            v                   v                   v
-    +--------------+    +--------------+    +--------------+
-    |   Pythia_0   |    |   Pythia_1   |    |      ...     |
-    +--------------+    +--------------+    +--------------+
-            |                   |                   |
-            |                   |                   |
-            v                   v                   v
-    +--------------+    +--------------+    +--------------+
-    |   Delphes_0  |    |   Delphes_1  |    |      ...     |
-    +--------------+    +--------------+    +--------------+
-            |                   |                   |
-            +-------------------+-------------------+
-                                v
-                        +--------------+
-                        |    Combine   |
-                        +--------------+
+```mermaid
+flowchart TD
+    init[Init] --> configure[Configure]
+    configure --> generate[Generate]
+    generate --> pythia_0[Pythia 0]
+    generate --> pythia_1[Pythia 1]
+    generate --> pythia_n[Pythia ...]
+    pythia_0 --> delphes_0[Delphes 0]
+    pythia_1 --> delphes_1[Delphes 1]
+    pythia_n --> delphes_n[Delphes ...]
+    delphes_0 --> combine[Combine]
+    delphes_1 --> combine[Combine]
+    delphes_n --> combine[Combine]
+```
 
 
 ## Installation
