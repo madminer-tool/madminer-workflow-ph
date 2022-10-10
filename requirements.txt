@@ -1,5 +1,5 @@
 # Includes necessary "f2py" Numpy binary
-madminer==0.9.0
+madminer==0.9.3
 pyyaml==5.4
 
 # Necessary for Python3 MadGraph versions
