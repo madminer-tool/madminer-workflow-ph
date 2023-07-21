@@ -44,7 +44,7 @@ ENV LD_LIBRARY_PATH $LD_LIBRARY_PATH:$ROOTSYS/lib
 
 #### Install MadGraph 5
 RUN mkdir -p ${SOFTWARE_FOLDER} && true \
-    | curl -sSL "https://launchpad.net/mg5amcnlo/2.0/2.9.x/+download/${MG_VERSION}.tar.gz" \
+    | curl -sSL "https://launchpad.net/mg5amcnlo/lts/2.9.x/+download/${MG_VERSION}.tar.gz" \
     | tar -xz -C ${SOFTWARE_FOLDER}
 
 

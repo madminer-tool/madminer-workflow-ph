@@ -84,7 +84,7 @@ To download MadGraph 5:
 
 ```shell
 mkdir -p software
-curl -sSL "https://launchpad.net/mg5amcnlo/2.0/2.9.x/+download/MG5_aMC_v2.9.4.tar.gz" | tar -xz -C software
+curl -sSL "https://launchpad.net/mg5amcnlo/lts/2.9.x/+download/MG5_aMC_v2.9.4.tar.gz" | tar -xz -C software
 ```
 
 
